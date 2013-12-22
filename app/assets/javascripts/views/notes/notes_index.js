@@ -5,13 +5,13 @@ App.Views.NotesIndex = Backbone.View.extend({
   template: HandlebarsTemplates['notes/index'],
 
   initialize: function() {
-    this.collection.fetch({ reset: true })
-    this.listenTo(this.collection, 'reset', this.render)
+    this.model.notes.fetch({ reset: true });
+    this.listenTo(this.model.notes, 'reset', this.render);
   },
 
   render: function() {
     this.$el.html(this.template());
-    this.collection.forEach(this.renderNote, this)
+    this.model.notes.forEach(this.renderNote, this)
     return this;
   },
 

@@ -1,6 +1,7 @@
 class NotesController < ApplicationController
   respond_to :json
   def index
-    respond_with Note.all
+    category = Category.find(params[:category_id])
+    respond_with category.notes
   end
 end

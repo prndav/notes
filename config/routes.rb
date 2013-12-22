@@ -1,5 +1,7 @@
 RailsNotes::Application.routes.draw do
   root 'application#index'
 
-  resources :notes
+  resources :categories do
+    resources :notes
+  end
 end

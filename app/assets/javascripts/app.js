@@ -3,6 +3,7 @@ window.App = {
   Collections: {},
   Views: {},
   Routers: {},
+  Vent: _.clone(Backbone.Events),
   initialize: function() {
     new App.Routers.MainRouter();
     Backbone.history.start();

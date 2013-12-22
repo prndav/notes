@@ -3,6 +3,10 @@ App.Views.Content = Backbone.View.extend({
 
   template: HandlebarsTemplates['content'],
 
+  initialize: function() {
+    this.listenTo(App.Vent, 'category:showNotes', this.categoryShowNotes)
+  },
+
   render: function() {
     this.$el.html(this.template());
     return this;
@@ -24,6 +28,9 @@ App.Views.Content = Backbone.View.extend({
 
   changeCurrentSideView: function(v) {
     this.currentSideView = v
+  },
+
+  categoryShowNotes: function(model) {
+    this.swapSide(new App.Views.NotesIndex({ model: model }))
   }
 });
-

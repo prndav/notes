@@ -2,6 +2,8 @@ App.Routers.MainRouter = Backbone.Router.extend({
   routes: {
     '': 'index',
     'notes': 'notesIndex',
+    'categories': 'categoriesIndex',
+    'categories/:id/notes': 'categoriesNotes'
   },
 
   initialize: function() {
@@ -24,5 +26,17 @@ App.Routers.MainRouter = Backbone.Router.extend({
     this.layoutViews();
     this.contentView.swapMain(new App.Views.DefaultMain());
     this.contentView.swapSide(new App.Views.NotesIndex({ collection: new App.Collections.Notes }));
+  },
+
+  categoriesIndex: function() {
+    this.layoutViews();
+    this.contentView.swapMain(new App.Views.DefaultMain());
+    this.contentView.swapSide(new App.Views.CategoriesIndex({ collection: new App.Collections.Categories }));
+  },
+
+  categoriesNotes: function(id) {
+    this.layoutViews();
+    this.contentView.swapMain(new App.Views.DefaultMain());
+    this.contentView.swapSide(new App.Views.NotesIndex({ model: new App.Models.Category({id: id}) }));
   }
 });
