@@ -11,6 +11,12 @@ class CategoriesController < ApplicationController
     respond_with(category)
   end
 
+  def update
+    category = Category.find(params[:id])
+    category.update_attributes(category_params)
+    respond_with category
+  end
+
   def destroy
     category = Category.find(params[:id])
     category.destroy

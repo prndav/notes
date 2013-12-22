@@ -7,6 +7,7 @@ App.Views.Category = Backbone.View.extend({
   initialize: function() {
     this.listenTo(this.model, 'destroy', this.triggerCategoryDestroy);
     this.listenTo(this.model, 'destroy', function() { this.remove()});
+    this.listenTo(this.model, 'change', this.render)
   },
 
   render: function() {
@@ -16,7 +17,8 @@ App.Views.Category = Backbone.View.extend({
 
   events: {
    'click a.category-link': 'categoryNotes',
-   'click a.remove-link': 'removeCategory'
+   'click a.remove-link': 'removeCategory',
+   'click a.update-link': 'editCategory'
   },
 
   categoryNotes: function(e) {
@@ -34,6 +36,11 @@ App.Views.Category = Backbone.View.extend({
     this.model.destroy({
       wait: true
     });
+  },
+
+  editCategory: function(e) {
+    e.preventDefault();
+    App.Vent.trigger('category:edit', this.model);
   },
 
   triggerProjectDestroy: function() {
