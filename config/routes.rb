@@ -4,4 +4,6 @@ RailsNotes::Application.routes.draw do
   resources :categories do
     resources :notes
   end
+
+  resources :notes
 end
