@@ -6,7 +6,7 @@ App.Views.Content = Backbone.View.extend({
   initialize: function() {
     this.listenTo(App.Vent, 'category:showNotes', this.categoryShowNotes);
     this.listenTo(App.Vent, 'category:newCategory', this.newCategory);
-    this.listenTo(App.Vent, 'category:create', this.swapMain(new App.Views.DefaultMain()))
+    this.listenTo(App.Vent, 'category:create', this.afterCreate);
   },
 
   render: function() {
@@ -38,5 +38,9 @@ App.Views.Content = Backbone.View.extend({
 
   newCategory: function() {
     this.swapMain(new App.Views.NewCategory({ model: new App.Models.Category() }))
+  },
+
+  afterCreate: function() {
+    this.swapMain(new App.Views.DefaultMain());
   }
 });
