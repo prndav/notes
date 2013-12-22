@@ -6,7 +6,8 @@ App.Views.NewCategory = Backbone.View.extend({
   },
 
   events: {
-    'click button': 'saveCategory'
+    'click button.submit': 'saveCategory',
+    'click button.discard': 'discard'
   },
 
   render: function() {
@@ -28,5 +29,10 @@ App.Views.NewCategory = Backbone.View.extend({
   clearForm: function() {
     this.$('#name').val('');
     delete(this.model.id)
+  },
+
+  discard: function(e) {
+    e.preventDefault();
+    App.Vent.trigger('discard');
   }
 });

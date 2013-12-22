@@ -9,6 +9,7 @@ App.Views.Content = Backbone.View.extend({
     this.listenTo(App.Vent, 'category:create', this.afterCreate);
     this.listenTo(App.Vent, 'category:edit', this.editCategory);
     this.listenTo(App.Vent, 'category:update', this.afterCreate);
+    this.listenTo(App.Vent, 'discard', this.discard);
   },
 
   render: function() {
@@ -47,6 +48,10 @@ App.Views.Content = Backbone.View.extend({
   },
 
   editCategory: function(model) {
-    this.swapMain(new App.Views.EditCategory({ model: model}))
+    this.swapMain(new App.Views.EditCategory({ model: model }))
+  },
+
+  discard: function() {
+    this.swapMain(new App.Views.DefaultMain());
   }
 });

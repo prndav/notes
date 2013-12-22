@@ -3,6 +3,8 @@ App.Routers.MainRouter = Backbone.Router.extend({
     '': 'index',
     'notes': 'notesIndex',
     'categories': 'categoriesIndex',
+    'categories/new': 'categoriesNew',
+    'categories/:id/edit': 'categoriesEdit',
     'categories/:id/notes': 'categoriesNotes'
   },
 
@@ -33,6 +35,23 @@ App.Routers.MainRouter = Backbone.Router.extend({
     this.contentView.swapMain(new App.Views.DefaultMain());
     this.contentView.swapSide(new App.Views.CategoriesIndex({ collection: new App.Collections.Categories }));
   },
+
+  categoriesNew: function() {
+    this.layoutViews();
+    this.contentView.swapMain(new App.Views.NewCategory({ model: new App.Models.Category()}));
+    this.contentView.swapSide(new App.Views.CategoriesIndex({ collection: new App.Collections.Categories()}));
+  },
+
+  categoriesEdit: function(id) {
+    var self = this;
+    this.layoutViews();
+    this.contentView.swapSide(new App.Views.CategoriesIndex({ collection: new App.Collections.Categories() }));
+    new App.Models.Category({id: id}).fetch({success: function(model) {
+      self.contentView.swapMain(new App.Views.EditCategory({ model: model }));
+    }})
+  },
+
+
 
   categoriesNotes: function(id) {
     this.layoutViews();

@@ -41,6 +41,7 @@ App.Views.Category = Backbone.View.extend({
   editCategory: function(e) {
     e.preventDefault();
     App.Vent.trigger('category:edit', this.model);
+    Backbone.history.navigate('/categories/' + this.model.id + '/edit')
   },
 
   triggerProjectDestroy: function() {

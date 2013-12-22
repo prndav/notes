@@ -6,11 +6,13 @@ App.Views.EditCategory = Backbone.View.extend({
   },
 
   events: {
-    'click button': 'updateCategory'
+    'click button.submit': 'updateCategory',
+    'click button.discard': 'discard'
   },
 
   render: function() {
-    this.$el.html(this.template(this.model));
+    console.log(this.model)
+    this.$el.html(this.template(this.model.toJSON()));
     return this;
   },
 
@@ -22,5 +24,10 @@ App.Views.EditCategory = Backbone.View.extend({
     e.preventDefault();
     this.model.set('name', this.$('#name').val());
     this.model.save();
+  },
+
+  discard: function(e) {
+    e.preventDefault();
+    App.Vent.trigger('discard');
   }
 });
