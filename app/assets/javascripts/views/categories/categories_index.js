@@ -7,8 +7,8 @@ App.Views.CategoriesIndex = Backbone.View.extend({
   initialize: function() {
     this.collection.fetch({ reset: true });
     this.listenTo(this.collection, 'reset', this.render);
-    this.listenTo(App.Vent, 'category:create', this.addToCollection)
-    this.listenTo(this.collection, 'add', this.renderCategory)
+    this.listenTo(App.Vent, 'category:create', this.addToCollection);
+    this.listenTo(this.collection, 'add', this.renderCategory);
   },
 
   events: {

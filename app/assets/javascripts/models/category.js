@@ -1,5 +1,5 @@
 App.Models.Category = Backbone.Model.extend({
-  url: '/categories',
+  urlRoot: '/categories',
 
   initialize: function() {
     this.notes = new App.Collections.Notes();
