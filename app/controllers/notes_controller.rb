@@ -18,6 +18,12 @@ class NotesController < ApplicationController
     respond_with note
   end
 
+  def update
+    note = Note.find(params[:id])
+    note.update_attributes(note_params)
+    respond_with note
+  end
+
   private
 
     def note_params

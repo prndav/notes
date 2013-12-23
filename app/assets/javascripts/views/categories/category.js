@@ -23,8 +23,8 @@ App.Views.Category = Backbone.View.extend({
 
   categoryNotes: function(e) {
     e.preventDefault();
-    App.Vent.trigger('category:showNotes', this.model)
-    Backbone.history.navigate('/categories/' + this.model.id + '/notes')
+    App.Vent.trigger('category:showNotes', this.model);
+    Backbone.history.navigate('/categories/' + this.model.get('id') + '/notes');
   },
 
   removeCategory: function(e) {

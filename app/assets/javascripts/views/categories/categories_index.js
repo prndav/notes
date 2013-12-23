@@ -24,6 +24,7 @@ App.Views.CategoriesIndex = Backbone.View.extend({
   renderCategory: function(model) {
     v = new App.Views.Category({ model: model })
     this.$('ul').append(v.render().el)
+    console.log(model);
   },
 
   newCategory: function(e) {
@@ -33,6 +34,7 @@ App.Views.CategoriesIndex = Backbone.View.extend({
   },
 
   addToCollection: function(model) {
+    model.notes.url = '/categories/' + model.get('id') + '/notes';
     this.collection.add(model);
   }
 

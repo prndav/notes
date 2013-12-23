@@ -16,15 +16,21 @@ App.Views.NewCategory = Backbone.View.extend({
   },
 
   saveCategory: function(e) {
+    var self = this;
     e.preventDefault();
     this.model.set('name', this.$('#name').val());
-    this.model.save();
+    this.model.save({}, {
+      success: function() {
+        self.clearForm();
+        App.Vent.trigger('category:create', self.model);
+      }
+    });
   },
 
-  success: function() {
-    this.clearForm();
-    App.Vent.trigger('category:create', this.model);
-  },
+  // success: function() {
+  //   this.clearForm();
+  //   App.Vent.trigger('category:create', this.model);
+  // },
 
   clearForm: function() {
     this.$('#name').val('');

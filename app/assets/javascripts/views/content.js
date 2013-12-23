@@ -50,6 +50,8 @@ App.Views.Content = Backbone.View.extend({
 
   afterCreate: function() {
     this.swapMain(new App.Views.DefaultMain());
+    Backbone.history.navigate('/categories');
+
   },
 
   editCategory: function(model) {
