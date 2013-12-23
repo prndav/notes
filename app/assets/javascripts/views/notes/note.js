@@ -5,7 +5,6 @@ App.Views.Note = Backbone.View.extend({
   template: HandlebarsTemplates['notes/note'],
 
   initialize: function() {
-    // this.listenTo(this.model, 'destroy', this.triggerNoteDestroy);
     this.listenTo(this.model, 'destroy', function() { this.remove()});
     this.listenTo(this.model, 'change', this.render)
   },

@@ -11,7 +11,7 @@ App.Views.Content = Backbone.View.extend({
     this.listenTo(App.Vent, 'category:update', this.afterCreate);
     this.listenTo(App.Vent, 'discard', this.discard);
     this.listenTo(App.Vent, 'addNote', this.addNote);
-    this.listenTo(App.Vent, 'note:create', this.afterCreate);
+    this.listenTo(App.Vent, 'note:create', this.afterAddNote);
     this.listenTo(App.Vent, 'renderNote', this.renderNote);
     this.listenTo(App.Vent, 'editNote', this.editNote);
     this.listenTo(App.Vent, 'note:update', this.afterCreate);
@@ -72,5 +72,9 @@ App.Views.Content = Backbone.View.extend({
 
   editNote: function(model) {
     this.swapMain(new App.Views.EditNote({ model: model }));
+  },
+
+  afterAddNote: function() {
+    this.swapMain(new App.Views.DefaultMain());
   }
 });
